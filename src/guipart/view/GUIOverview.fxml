@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="541.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guipart.view.GUIOverviewController">
+   <children>
+      <SplitPane dividerPositions="0.5152284263959391" layoutX="2.0" layoutY="3.0" prefHeight="541.0" prefWidth="692.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="539.0" prefWidth="242.0">
+               <children>
+                  <TableView fx:id="personTable" layoutX="9.0" layoutY="52.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="id" prefWidth="49.0" text="ID" />
+                      <TableColumn fx:id="balance" prefWidth="88.0" text="Balance" />
+                        <TableColumn fx:id="creditLine" prefWidth="107.0" text="Credit line" />
+                        <TableColumn fx:id="fraud" prefWidth="61.0" text="Fraud" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="539.0" prefWidth="421.0">
+               <children>
+                  <GridPane layoutX="48.0" layoutY="77.0" prefHeight="178.0" prefWidth="238.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="135.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="103.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Gender" />
+                        <Label text="Transactions" GridPane.rowIndex="1" />
+                        <Label text="International trans." GridPane.rowIndex="2" />
+                        <Label text="Cardholder" GridPane.rowIndex="3" />
+                        <Label fx:id="gender" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="transaction" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="intlTransaction" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="cardholders" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+                  <Label layoutX="48.0" layoutY="29.0" text="Details:" />
+                  <Button layoutX="61.0" layoutY="477.0" mnemonicParsing="false" text="Classify" />
+                  <Button layoutX="158.0" layoutY="477.0" mnemonicParsing="false" text="Open file" />
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
