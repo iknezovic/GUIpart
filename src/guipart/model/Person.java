@@ -114,19 +114,19 @@ public class Person {
     }
     
     public String getGender(){
-        return this.gender.toString();
+        return this.gender.get();
     }
     
     public String getTransactions(){
-        return this.trans.toString();
+        return Integer.toString(this.trans.get());
     }
     
     public String getIntlTransactions(){
-        return this.intlTrans.toString();
+        return Integer.toString(this.intlTrans.get());
     }
     
     public String getCardholders(){
-        return this.cardholders.toString();
+        return Integer.toString(this.cardholders.get());
     }
     
     

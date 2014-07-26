@@ -40,15 +40,15 @@
                         <Label text="Transactions" GridPane.rowIndex="1" />
                         <Label text="International trans." GridPane.rowIndex="2" />
                         <Label text="Cardholder" GridPane.rowIndex="3" />
-                        <Label fx:id="gender" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="transaction" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="intlTransaction" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="cardholders" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="gender" prefHeight="15.0" prefWidth="101.0" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="transaction" prefHeight="15.0" prefWidth="97.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="intlTransaction" prefHeight="15.0" prefWidth="103.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="cardholders" prefHeight="15.0" prefWidth="98.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <Label layoutX="48.0" layoutY="29.0" text="Details:" />
+                  <Label layoutX="50.0" layoutY="55.0" text="Details:" />
                   <Button layoutX="61.0" layoutY="477.0" mnemonicParsing="false" text="Classify" />
-                  <Button layoutX="158.0" layoutY="477.0" mnemonicParsing="false" text="Open file" />
+                  <Button fx:id="openButton" layoutX="158.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleOpenFile" text="Open file" />
                </children></AnchorPane>
         </items>
       </SplitPane>
