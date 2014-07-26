@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
 /**
@@ -22,12 +23,18 @@ import javafx.stage.FileChooser;
  * @author ivan
  */
 public class GUIOverviewController {
-    
+    /*******************************************************************
+        Table fields
+    *********************************************************************/
     @FXML private TableView<Person> personTable;
     @FXML private TableColumn<Person,String> id;
     @FXML private TableColumn<Person,String> balance;
     @FXML private TableColumn<Person,String> creditLine;
     @FXML private TableColumn<Person,String> fraud;
+    
+    /***************************************************************
+     *  Label fields
+     ****************************************************************/
     
     @FXML private Label gender;
     @FXML private Label transaction;
@@ -35,8 +42,12 @@ public class GUIOverviewController {
     @FXML private Label cardholders;
     
     @FXML private Button openButton;
-    private final FileChooser fileChooser = new FileChooser();
+    @FXML private TextField textFieldCSV;
+    @FXML private TextField textFieldModel;
     
+    
+    private String pathCSV;
+    private String pathModel;
     
     //reference to GUIPart;
     private GUIPart guiPart;
@@ -99,10 +110,29 @@ public class GUIOverviewController {
     
     @FXML protected void handleOpenFile(ActionEvent event){
         
+        final FileChooser fileChooser = new FileChooser();
+        Utils.configureFileChooser(fileChooser);
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
-            //openFile(file);
+            pathCSV = file.getPath();
+            
+            textFieldCSV.setText(pathCSV);
         }
                 
     }
+    
+    @FXML protected void handleOpenModel(ActionEvent event){
+        
+        final FileChooser fileChooser = new FileChooser();
+        //Utils.configureFileChooser(fileChooser);
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            pathModel = file.getPath();
+            
+            textFieldModel.setText(pathModel);
+        }
+                
+    }
+    
+    
 }

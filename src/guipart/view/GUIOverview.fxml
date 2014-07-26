@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="541.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guipart.view.GUIOverviewController">
    <children>
-      <SplitPane dividerPositions="0.5152284263959391" layoutX="2.0" layoutY="3.0" prefHeight="541.0" prefWidth="692.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.39593908629441626" layoutX="2.0" layoutY="3.0" prefHeight="541.0" prefWidth="692.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="539.0" prefWidth="242.0">
                <children>
@@ -47,8 +47,11 @@
                      </children>
                   </GridPane>
                   <Label layoutX="50.0" layoutY="55.0" text="Details:" />
-                  <Button layoutX="61.0" layoutY="477.0" mnemonicParsing="false" text="Classify" />
-                  <Button fx:id="openButton" layoutX="158.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleOpenFile" text="Open file" />
+                  <Button layoutX="65.0" layoutY="476.0" mnemonicParsing="false" text="Classify" />
+                  <Button fx:id="openButton" layoutX="148.0" layoutY="475.0" mnemonicParsing="false" onAction="#handleOpenFile" text="Open file" />
+                  <TextField fx:id="textFieldCSV" editable="false" layoutX="63.0" layoutY="398.0" prefHeight="25.0" prefWidth="301.0" promptText="None file selected" />
+                  <Button layoutX="255.0" layoutY="475.0" mnemonicParsing="false" onAction="#handleOpenModel" text="Select model" />
+                  <TextField fx:id="textFieldModel" layoutX="63.0" layoutY="432.0" prefHeight="25.0" prefWidth="301.0" promptText="None model selected" />
                </children></AnchorPane>
         </items>
       </SplitPane>

@@ -34,10 +34,10 @@ public class GUIPart extends Application {
     
     //constructor
     public GUIPart(){
-        personData.add(new Person(5, 5, Integer.MIN_VALUE, Boolean.TRUE));
-        personData.add(new Person(Integer.SIZE, Integer.SIZE, Integer.MIN_VALUE, Boolean.TRUE));
-        personData.add(new Person(Integer.SIZE, Integer.SIZE, Integer.MIN_VALUE, Boolean.TRUE));
-        personData.add(new Person(Integer.SIZE, Integer.SIZE, Integer.MIN_VALUE, Boolean.TRUE));
+        for(int i = 0;i < 1000; i++){
+            personData.add(new Person(5, 5, Integer.MIN_VALUE, Boolean.TRUE));
+        }
+        
     }
     
     public ObservableList<Person> getPersonData() {
