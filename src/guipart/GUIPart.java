@@ -9,7 +9,6 @@ package guipart;
 import guipart.model.Person;
 import guipart.view.GUIOverviewController;
 import java.io.IOException;
-import java.util.Observable;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,9 +33,9 @@ public class GUIPart extends Application {
     
     //constructor
     public GUIPart(){
-        for(int i = 0;i < 1000; i++){
+        /*for(int i = 0;i < 1000; i++){
             personData.add(new Person(5, 5, Integer.MIN_VALUE, Boolean.TRUE));
-        }
+        }*/
         
     }
     
@@ -104,6 +103,12 @@ public class GUIPart extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    public void addPerson(Person person){
+    
+        this.personData.add(person);
+        
     }
     
 }

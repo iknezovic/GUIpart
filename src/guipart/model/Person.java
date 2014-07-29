@@ -18,21 +18,21 @@ import javafx.beans.property.StringProperty;
  * @author ivan
  */
 public class Person {
-    private final IntegerProperty id;
-    private final IntegerProperty balance;
-    private final IntegerProperty creditLine;   
-    private final BooleanProperty fraud;
+    private  IntegerProperty id;
+    private  IntegerProperty balance;
+    private  IntegerProperty creditLine;   
+    private  BooleanProperty fraud;
     
-    private final StringProperty gender; 
-    private final IntegerProperty trans;
-    private final IntegerProperty intlTrans;
-    private final IntegerProperty cardholders;
+    private  StringProperty gender; 
+    private  IntegerProperty trans;
+    private  IntegerProperty intlTrans;
+    private  IntegerProperty cardholders; 
     
     public Person(){
-      this(Integer.SIZE, Integer.SIZE, Integer.MIN_VALUE, Boolean.TRUE);
+      
     }
     
-    public Person(Integer id,Integer balance,Integer creditLine,Boolean fraud){
+   /* public Person(Integer id,Integer balance,Integer creditLine,Boolean fraud){
         this.id = new SimpleIntegerProperty(id);
         this.balance = new SimpleIntegerProperty(balance);
         this.creditLine = new SimpleIntegerProperty(creditLine);
@@ -43,7 +43,24 @@ public class Person {
         this.trans = new SimpleIntegerProperty(0);
         this.intlTrans = new SimpleIntegerProperty(0);
         this.cardholders = new SimpleIntegerProperty(1);
+                
+    }*/
+    
+    public Person(Integer id,Integer balance,Integer creditLine,Boolean fraud,
+                            String gender,Integer trans,Integer intlTrans,Integer cardholders){
+    
+        this.id = new SimpleIntegerProperty(id);
+        this.balance = new SimpleIntegerProperty(balance);
+        this.creditLine = new SimpleIntegerProperty(creditLine);
+        this.fraud = new SimpleBooleanProperty(fraud);
+    
+        this.gender = new SimpleStringProperty(gender);
+        this.trans = new SimpleIntegerProperty(trans);
+        this.intlTrans = new SimpleIntegerProperty(intlTrans);
+        this.cardholders = new SimpleIntegerProperty(cardholders);
+        
     }
+    
     
     public Integer getID(){
         return this.id.get();

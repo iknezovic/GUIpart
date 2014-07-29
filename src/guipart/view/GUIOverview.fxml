@@ -47,7 +47,7 @@
                      </children>
                   </GridPane>
                   <Label layoutX="50.0" layoutY="55.0" text="Details:" />
-                  <Button layoutX="65.0" layoutY="476.0" mnemonicParsing="false" text="Classify" />
+                  <Button layoutX="65.0" layoutY="476.0" mnemonicParsing="false" onAction="#handleClassifyModel" text="Classify" />
                   <Button fx:id="openButton" layoutX="148.0" layoutY="475.0" mnemonicParsing="false" onAction="#handleOpenFile" text="Open file" />
                   <TextField fx:id="textFieldCSV" editable="false" layoutX="63.0" layoutY="398.0" prefHeight="25.0" prefWidth="301.0" promptText="None file selected" />
                   <Button layoutX="255.0" layoutY="475.0" mnemonicParsing="false" onAction="#handleOpenModel" text="Select model" />

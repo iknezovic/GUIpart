@@ -8,7 +8,9 @@ package guipart.view;
 
 import guipart.GUIPart;
 import guipart.model.Person;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,6 +19,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import org.apache.mahout.classifier.evaluation.Auc;
+import org.apache.mahout.classifier.sgd.CsvRecordFactory;
+import org.apache.mahout.classifier.sgd.LogisticModelParameters;
+import org.apache.mahout.classifier.sgd.OnlineLogisticRegression;
+import org.apache.mahout.math.Matrix;
+import org.apache.mahout.math.SequentialAccessSparseVector;
+import org.apache.mahout.math.Vector;
 
 /**
  *
@@ -46,8 +55,8 @@ public class GUIOverviewController {
     @FXML private TextField textFieldModel;
     
     
-    private String pathCSV;
-    private String pathModel;
+    private String pathCSV = null;
+    private String pathModel = null;
     
     //reference to GUIPart;
     private GUIPart guiPart;
@@ -108,7 +117,7 @@ public class GUIOverviewController {
     }
     
     
-    @FXML protected void handleOpenFile(ActionEvent event){
+    @FXML void handleOpenFile(ActionEvent event){
         
         final FileChooser fileChooser = new FileChooser();
         Utils.configureFileChooser(fileChooser);
@@ -121,7 +130,7 @@ public class GUIOverviewController {
                 
     }
     
-    @FXML protected void handleOpenModel(ActionEvent event){
+    @FXML void handleOpenModel(ActionEvent event){
         
         final FileChooser fileChooser = new FileChooser();
         //Utils.configureFileChooser(fileChooser);
@@ -134,5 +143,66 @@ public class GUIOverviewController {
                 
     }
     
-    
+    @FXML void handleClassifyModel(ActionEvent event) throws IOException{
+        
+        if(pathModel != null && pathCSV != null){
+            
+            Auc collector = new Auc();
+            LogisticModelParameters lmp = LogisticModelParameters.loadFrom(new File(pathModel));
+
+            CsvRecordFactory csv = lmp.getCsvRecordFactory();
+            OnlineLogisticRegression lr = lmp.createRegression();
+
+            BufferedReader in = Utils.open(pathCSV);
+
+
+            String line = in.readLine();
+            csv.firstLine(line);
+            line = in.readLine();
+            int correct = 0;
+            int wrong = 0;
+            
+            while(line != null){
+            
+                Vector v = new SequentialAccessSparseVector(lmp.getNumFeatures());
+                int target = csv.processLine(line, v);
+                String [] split = line.split(",");
+                
+                for (String split1 : split) {
+                    System.out.println(split1);
+                }
+                Integer a = Integer.parseInt(split[0]);
+                System.out.println("AAAAA je:"+a);
+                
+                Person temp = new Person(Integer.parseInt(split[0]),Integer.parseInt(split[4]),Integer.parseInt(split[7]), Boolean.parseBoolean(split[8]), 
+                        split[1],Integer.parseInt(split[5]),Integer.parseInt(split[6]),Integer.parseInt(split[2]));
+                
+                guiPart.addPerson(temp);
+
+
+                double score = lr.classifyFull(v).maxValueIndex();
+                if(score == target)
+                   correct++;
+                else
+                   wrong++;
+
+                System.out.println("Target is: "+target+" Score: "+score);
+                line = in.readLine();
+                collector.add(target, score);
+
+            }
+            double posto = ((double)wrong/(double)(correct+wrong))*100;
+            System.out.println("Total: "+(correct+wrong)+" Correct: "+correct+" Wrong: "+wrong+" Wrong pct: "+posto +"%");
+            //PrintWriter output = null;
+            Matrix m = collector.confusion();
+            //output.printf(Locale.ENGLISH, "confusion: [[%.1f, %.1f], [%.1f, %.1f]]%n",m.get(0, 0), m.get(1, 0), m.get(0, 1), m.get(1, 1));
+            System.out.println("Confusion:"+m.get(0, 0)+" "+m.get(1, 0)+"\n \t   "+m.get(0, 1)+" "+m.get(1, 1)+" ");
+    //        m = collector.entropy();
+            //output.printf(Locale.ENGLISH, "entropy: [[%.1f, %.1f], [%.1f, %.1f]]%n",m.get(0, 0), m.get(1, 0), m.get(0, 1), m.get(1, 1));
+        }else{
+            
+        
+        }   
+    }
+ 
 }
