@@ -29,62 +29,24 @@ import org.apache.mahout.math.Vector;
  */
 public class Utils {
     
-    static void configureFileChooser(
+    static void configureFileChooserCSV(
         final FileChooser fileChooser) {      
             fileChooser.setTitle("Select CSV");
-            fileChooser.setInitialDirectory(
+            /*fileChooser.setInitialDirectory(
                 new File(System.getProperty("user.home"))
-            );                 
+            ); */                
             fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All files", "*.*"),
                 new FileChooser.ExtensionFilter("CSV", "*.csv"));
     }
     
-    
-     static void runLogistic(String pathCSV,String pathModel) throws IOException{
-        Auc collector = new Auc();
+    static void configureFileChooserModel(
+        final FileChooser fileChooser) {      
+            fileChooser.setTitle("Select model");
         
-        LogisticModelParameters lmp = LogisticModelParameters.loadFrom(new File(pathModel));
-
-        CsvRecordFactory csv = lmp.getCsvRecordFactory();
-        OnlineLogisticRegression lr = lmp.createRegression();
-        
-        BufferedReader in = open(pathCSV);
-        
-        
-        String line = in.readLine();
-        csv.firstLine(line);
-        line = in.readLine();
-        int correct = 0;
-        int wrong = 0;
-        while(line != null){
-            Vector v = new SequentialAccessSparseVector(lmp.getNumFeatures());
-            int target = csv.processLine(line, v);
-            String [] split = line.split(",");
-            
-            
-            double score = lr.classifyFull(v).maxValueIndex();
-            if(score == target)
-               correct++;
-            else
-               wrong++;
-                       
-            System.out.println("Target is: "+target+" Score: "+score);
-            line = in.readLine();
-            collector.add(target, score);
-            
-        }
-        double posto = ((double)wrong/(double)(correct+wrong))*100;
-        System.out.println("Total: "+(correct+wrong)+" Correct: "+correct+" Wrong: "+wrong+" Wrong pct: "+posto +"%");
-        //PrintWriter output = null;
-        Matrix m = collector.confusion();
-        //output.printf(Locale.ENGLISH, "confusion: [[%.1f, %.1f], [%.1f, %.1f]]%n",m.get(0, 0), m.get(1, 0), m.get(0, 1), m.get(1, 1));
-        System.out.println("Confusion:"+m.get(0, 0)+" "+m.get(1, 0)+"\n \t   "+m.get(0, 1)+" "+m.get(1, 1)+" ");
-//        m = collector.entropy();
-        //output.printf(Locale.ENGLISH, "entropy: [[%.1f, %.1f], [%.1f, %.1f]]%n",m.get(0, 0), m.get(1, 0), m.get(0, 1), m.get(1, 1));
-        
-    
     }
+    
+ 
      
      static BufferedReader open(String inputFile) throws IOException {
         InputStream in;

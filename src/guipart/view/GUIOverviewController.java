@@ -120,7 +120,7 @@ public class GUIOverviewController {
     @FXML void handleOpenFile(ActionEvent event){
         
         final FileChooser fileChooser = new FileChooser();
-        Utils.configureFileChooser(fileChooser);
+        Utils.configureFileChooserCSV(fileChooser);
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
             pathCSV = file.getPath();
@@ -133,7 +133,7 @@ public class GUIOverviewController {
     @FXML void handleOpenModel(ActionEvent event){
         
         final FileChooser fileChooser = new FileChooser();
-        //Utils.configureFileChooser(fileChooser);
+        Utils.configureFileChooserModel(fileChooser);
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
             pathModel = file.getPath();
@@ -161,6 +161,7 @@ public class GUIOverviewController {
             line = in.readLine();
             int correct = 0;
             int wrong = 0;
+            Boolean booltemp;
             
             while(line != null){
             
@@ -168,16 +169,16 @@ public class GUIOverviewController {
                 int target = csv.processLine(line, v);
                 String [] split = line.split(",");
                 
-                for (String split1 : split) {
+                /*for (String split1 : split) {
                     System.out.println(split1);
                 }
                 Integer a = Integer.parseInt(split[0]);
                 System.out.println("AAAAA je:"+a);
                 
-                Person temp = new Person(Integer.parseInt(split[0]),Integer.parseInt(split[4]),Integer.parseInt(split[7]), Boolean.parseBoolean(split[8]), 
+                Person temp = new Person(Integer.parseInt(split[0]),Integer.parseInt(split[4]),Integer.parseInt(split[7]),Boolean.parseBoolean(split[8]), 
                         split[1],Integer.parseInt(split[5]),Integer.parseInt(split[6]),Integer.parseInt(split[2]));
                 
-                guiPart.addPerson(temp);
+                guiPart.addPerson(temp);*/
 
 
                 double score = lr.classifyFull(v).maxValueIndex();
@@ -187,6 +188,14 @@ public class GUIOverviewController {
                    wrong++;
 
                 System.out.println("Target is: "+target+" Score: "+score);
+                
+                booltemp = score != 0;
+                
+                Person temp = new Person(Integer.parseInt(split[0]),Integer.parseInt(split[4]),Integer.parseInt(split[7]),booltemp, 
+                        split[1],Integer.parseInt(split[5]),Integer.parseInt(split[6]),Integer.parseInt(split[2]));
+                
+                guiPart.addPerson(temp);
+                
                 line = in.readLine();
                 collector.add(target, score);
 
