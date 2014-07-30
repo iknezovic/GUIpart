@@ -8,6 +8,7 @@ package guipart;
 
 import guipart.model.Person;
 import guipart.view.GUIOverviewController;
+import guipart.view.RootLayoutController;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -67,6 +68,9 @@ public class GUIPart extends Application {
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
+            
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -110,5 +114,11 @@ public class GUIPart extends Application {
         this.personData.add(person);
         
     }
+    
+    public void clearTable(){
+        this.personData.clear();
+    }
+    
+   
     
 }

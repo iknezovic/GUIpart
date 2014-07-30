@@ -26,6 +26,7 @@ import org.apache.mahout.classifier.sgd.OnlineLogisticRegression;
 import org.apache.mahout.math.Matrix;
 import org.apache.mahout.math.SequentialAccessSparseVector;
 import org.apache.mahout.math.Vector;
+import org.controlsfx.dialog.Dialogs;
 
 /**
  *
@@ -54,7 +55,9 @@ public class GUIOverviewController {
     @FXML private TextField textFieldCSV;
     @FXML private TextField textFieldModel;
     
-    
+    /****************************************************************
+     * path to csv file and model
+     *****************************************************************/
     private String pathCSV = null;
     private String pathModel = null;
     
@@ -80,7 +83,7 @@ public class GUIOverviewController {
         balance.setCellValueFactory(cellData -> cellData.getValue().getBalanceProperty().asString());
         creditLine.setCellValueFactory(cellData -> cellData.getValue().getCreditLineProperty().asString());
         fraud.setCellValueFactory(cellData -> cellData.getValue().getFraudProperty().asString());
-        //firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+        
         
         // Clear person details.
         setPersonDetails(null);
@@ -192,7 +195,7 @@ public class GUIOverviewController {
                 booltemp = score != 0;
                 
                 Person temp = new Person(Integer.parseInt(split[0]),Integer.parseInt(split[4]),Integer.parseInt(split[7]),booltemp, 
-                        split[1],Integer.parseInt(split[5]),Integer.parseInt(split[6]),Integer.parseInt(split[2]));
+                        split[1],Integer.parseInt(split[5]),Integer.parseInt(split[6]),Integer.parseInt(split[3]));
                 
                 guiPart.addPerson(temp);
                 
@@ -209,6 +212,15 @@ public class GUIOverviewController {
     //        m = collector.entropy();
             //output.printf(Locale.ENGLISH, "entropy: [[%.1f, %.1f], [%.1f, %.1f]]%n",m.get(0, 0), m.get(1, 0), m.get(0, 1), m.get(1, 1));
         }else{
+            
+            
+            Dialogs.create()
+        .owner(guiPart.getPrimaryStage())
+        .title("Error Dialog")
+        .masthead("Look, an Error Dialog")
+        .message("Ooops, there was an error!")
+        .showError();
+            
             
         
         }   

@@ -15,13 +15,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import javafx.stage.FileChooser;
-import org.apache.mahout.classifier.evaluation.Auc;
-import org.apache.mahout.classifier.sgd.CsvRecordFactory;
-import org.apache.mahout.classifier.sgd.LogisticModelParameters;
-import org.apache.mahout.classifier.sgd.OnlineLogisticRegression;
-import org.apache.mahout.math.Matrix;
-import org.apache.mahout.math.SequentialAccessSparseVector;
-import org.apache.mahout.math.Vector;
 
 /**
  *
